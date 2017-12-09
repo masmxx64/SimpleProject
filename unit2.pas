@@ -1,0 +1,57 @@
+unit Unit2;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils;
+
+procedure ArrayInit;
+procedure ArrayAdd(v:integer);
+procedure ArrayDelete(row:integer);
+procedure ArrayPrint;
+
+implementation
+
+uses
+    Unit1;
+
+var
+   a:array[0..99] of integer;
+   size:integer;
+
+procedure ArrayInit;
+begin
+     size := 0;
+end;
+
+procedure ArrayAdd(v:integer);
+begin
+     a[size] := v;
+     inc(size);
+end;
+
+procedure ArrayDelete(row:integer);
+var
+   i:integer;
+begin
+     for i:=row to size-1-1 do
+     	 a[row] := a[row+1];
+
+     dec(size);
+end;
+
+procedure ArrayPrint;
+var
+   i:integer;
+begin
+     Form1.ListBox1.Clear;
+
+     for i:=0 to size-1 do
+     	 Form1.ListBox1.AddItem( IntToStr(a[i]), nil );
+
+end;
+
+end.
+
